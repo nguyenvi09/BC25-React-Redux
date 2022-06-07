@@ -11,7 +11,7 @@ class OanTuTiRedux extends Component {
               <div className="speech-bubble">
                 <img
                   className="speech-bubble__img"
-                  src={this.props.xucXac.hinhAnh}
+                  src={this.props.xucXacNguoiChoi.hinhAnh}
                 />
               </div>
 
@@ -58,10 +58,12 @@ class OanTuTiRedux extends Component {
                 I'm iron man, i love you 3000 !!
               </h1>
               <div style={{ color: "blue", fontSize: "35px" }}>
-                Số bàn thắng: 0
+                Số bàn thắng:{" "}
+                <span style={{ color: "yellow" }}>{this.props.soBanThang}</span>
               </div>
               <div style={{ color: "blue", fontSize: "35px" }}>
-                Số bàn chơi: 0
+                Số bàn chơi:{" "}
+                <span style={{ color: "yellow" }}>{this.props.soBanChoi}</span>
               </div>
               <button
                 style={{
@@ -69,13 +71,17 @@ class OanTuTiRedux extends Component {
                   color: "white",
                   fontSize: "20px",
                 }}
+                onClick={this.props.playGame}
               >
                 Play game
               </button>
             </div>
             <div className="col-sm-3 text-right align-self-end text-center">
               <div className="speech-bubble">
-                <img className="speech-bubble__img" src="./img/keo.png" />
+                <img
+                  className="speech-bubble__img"
+                  src={this.props.xucXacMay.hinhAnh}
+                />
               </div>
               <img
                 style={{ width: "70%", marginBottom: "30px" }}
@@ -91,9 +97,11 @@ class OanTuTiRedux extends Component {
 
 //kéo dữ liệu về
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    xucXac: state.oanTuTiReducer.tmp,
+    xucXacNguoiChoi: state.oanTuTiReducer.tmpNguoiChoi,
+    xucXacMay: state.oanTuTiReducer.tmpMay,
+    soBanThang: state.oanTuTiReducer.soBanThang,
+    soBanChoi: state.oanTuTiReducer.soBanChoi,
   };
 };
 
@@ -104,6 +112,12 @@ const mapDispatchToProps = (dispatch) => {
       let action = {
         type: "CHON_KBB",
         payload: value,
+      };
+      dispatch(action);
+    },
+    playGame: () => {
+      let action = {
+        type: "OAN_TU_TI",
       };
       dispatch(action);
     },
