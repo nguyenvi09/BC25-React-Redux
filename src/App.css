@@ -106,8 +106,11 @@
   font-family: font-game;
 }
 
-/* .speech-bubble {
+.speech-bubble {
 	position: relative;
+  left: 80px;
+  width: 100px;
+  height: 100px;
 	background: #45D994;
 	border-radius: .4em;
 	
@@ -126,5 +129,5 @@
 	border-left: 0;
 	margin-left: -17.5px;
 	margin-bottom: -35px;
-} */
+}
 

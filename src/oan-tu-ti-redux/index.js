@@ -6,8 +6,21 @@ export default class OanTuTiRedux extends Component {
       <div className="game-ott">
         <div className="container mt-5">
           <div className="row">
-            <div className="col-sm-3 text-left align-self-end speech-bubble">
+            <div className="col-sm-3 text-left align-self-end text-center">
+              <div className="speech-bubble"></div>
+
               <img style={{ width: "70%" }} src="./img/player.png" />
+              <div className="d-flex justify-content-between">
+                <button style={{ width: "30%" }} className="btn btn-light p-0">
+                  <img style={{ width: "50%" }} src="./img/keo.png" />
+                </button>
+                <button style={{ width: "30%" }} className="btn btn-light p-0">
+                  <img style={{ width: "50%" }} src="./img/bua.png" />
+                </button>
+                <button style={{ width: "30%" }} className="btn btn-light p-0">
+                  <img style={{ width: "50%" }} src="./img/bao.png" />
+                </button>
+              </div>
             </div>
             <div className="col-sm-6 text-center">
               <h1
@@ -20,10 +33,10 @@ export default class OanTuTiRedux extends Component {
               >
                 I'm iron man, i love you 3000 !!
               </h1>
-              <div style={{ color: "blue", fontSize: "40px" }}>
+              <div style={{ color: "blue", fontSize: "35px" }}>
                 Số bàn thắng: 0
               </div>
-              <div style={{ color: "blue", fontSize: "40px" }}>
+              <div style={{ color: "blue", fontSize: "35px" }}>
                 Số bàn chơi: 0
               </div>
               <button
@@ -36,8 +49,12 @@ export default class OanTuTiRedux extends Component {
                 Play game
               </button>
             </div>
-            <div className="col-sm-3 text-right align-self-end">
-              <img style={{ width: "70%" }} src="./img/playerComputer.png" />
+            <div className="col-sm-3 text-right align-self-end text-center">
+              <div className="speech-bubble"></div>
+              <img
+                style={{ width: "70%", marginBottom: "30px" }}
+                src="./img/playerComputer.png"
+              />
             </div>
           </div>
         </div>
