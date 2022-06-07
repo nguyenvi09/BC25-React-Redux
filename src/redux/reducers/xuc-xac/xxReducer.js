@@ -16,7 +16,6 @@ const xxReducer = (state = initalState, action) => {
       return { ...state };
     }
     case "PLAY_GAME": {
-      console.log(state.taiXiu);
       //B1: xử lý tạo giá trị ngẫu nhiên 3 cục xúc xắc
       let mangXucXacNgauNhien = [];
       for (let i = 0; i < 3; i++) {
@@ -38,7 +37,6 @@ const xxReducer = (state = initalState, action) => {
       let tongSoDiem = state.mangXucXac.reduce((tongDiem, xucXac) => {
         return (tongDiem += xucXac.ma);
       }, 0);
-      console.log(state.taiXiu);
       // xét điều kiện thắng game
       if (
         (tongSoDiem > 11 && !state.taiXiu) ||

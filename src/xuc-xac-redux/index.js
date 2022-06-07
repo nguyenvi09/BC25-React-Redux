@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./styles.css";
 import XucXacList from "./XucXacList";
 import ThongTin from "./ThongTin";
 import { connect } from "react-redux";
