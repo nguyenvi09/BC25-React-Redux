@@ -1,23 +1,47 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class OanTuTiRedux extends Component {
+class OanTuTiRedux extends Component {
   render() {
     return (
       <div className="game-ott">
         <div className="container mt-5">
           <div className="row">
             <div className="col-sm-3 text-left align-self-end text-center">
-              <div className="speech-bubble"></div>
+              <div className="speech-bubble">
+                <img
+                  className="speech-bubble__img"
+                  src={this.props.xucXac.hinhAnh}
+                />
+              </div>
 
               <img style={{ width: "70%" }} src="./img/player.png" />
               <div className="d-flex justify-content-between">
-                <button style={{ width: "30%" }} className="btn btn-light p-0">
+                <button
+                  onClick={() => {
+                    this.props.chonKeoBuaBao(1);
+                  }}
+                  style={{ width: "30%" }}
+                  className="btn btn-light p-0"
+                >
                   <img style={{ width: "50%" }} src="./img/keo.png" />
                 </button>
-                <button style={{ width: "30%" }} className="btn btn-light p-0">
+                <button
+                  onClick={() => {
+                    this.props.chonKeoBuaBao(2);
+                  }}
+                  style={{ width: "30%" }}
+                  className="btn btn-light p-0"
+                >
                   <img style={{ width: "50%" }} src="./img/bua.png" />
                 </button>
-                <button style={{ width: "30%" }} className="btn btn-light p-0">
+                <button
+                  onClick={() => {
+                    this.props.chonKeoBuaBao(3);
+                  }}
+                  style={{ width: "30%" }}
+                  className="btn btn-light p-0"
+                >
                   <img style={{ width: "50%" }} src="./img/bao.png" />
                 </button>
               </div>
@@ -50,7 +74,9 @@ export default class OanTuTiRedux extends Component {
               </button>
             </div>
             <div className="col-sm-3 text-right align-self-end text-center">
-              <div className="speech-bubble"></div>
+              <div className="speech-bubble">
+                <img className="speech-bubble__img" src="./img/keo.png" />
+              </div>
               <img
                 style={{ width: "70%", marginBottom: "30px" }}
                 src="./img/playerComputer.png"
@@ -62,3 +88,26 @@ export default class OanTuTiRedux extends Component {
     );
   }
 }
+
+//kéo dữ liệu về
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    xucXac: state.oanTuTiReducer.tmp,
+  };
+};
+
+// xử lý chọn kéo|búa|bao
+const mapDispatchToProps = (dispatch) => {
+  return {
+    chonKeoBuaBao: (value) => {
+      let action = {
+        type: "CHON_KBB",
+        payload: value,
+      };
+      dispatch(action);
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OanTuTiRedux);
