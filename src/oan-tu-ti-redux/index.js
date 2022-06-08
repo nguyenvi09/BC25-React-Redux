@@ -16,7 +16,7 @@ class OanTuTiRedux extends Component {
             <div className="col-sm-6 text-center">
               <ThongTin />
               <button
-                className="btn btn-success"
+                className="btn btn-success mt-3"
                 style={{ fontSize: "22px" }}
                 onClick={this.props.playGame}
               >
