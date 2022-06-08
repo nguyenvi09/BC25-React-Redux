@@ -1,13 +1,15 @@
 // xác định dữ liệu tạo state
 const initialState = {
   tmpNguoiChoi: { ma: 1, hinhAnh: "img/keo.png" },
-  tmpMay: { ma: 2, hinhAnh: "img/bua.png" },
+  tmpMayTinh: { ma: 2, hinhAnh: "img/bua.png" },
   mangKeoBuaBao: [
     { ma: 1, hinhAnh: "img/keo.png" },
     { ma: 2, hinhAnh: "img/bua.png" },
     { ma: 3, hinhAnh: "img/bao.png" },
   ],
   soBanThang: 0,
+  soBanHoa: 0,
+  soBanThua: 0,
   soBanChoi: 0,
 };
 
@@ -25,25 +27,35 @@ const oanTuTiReducer = (state = initialState, action) => {
       return { ...state };
     }
     case "OAN_TU_TI": {
-      //b1: máy sẽ chọn ngẫu nhiên kéo|búa|bao
+      //B1: tăng số bàn chơi
+      state.soBanChoi += 1;
+
+      //b2: máy sẽ chọn ngẫu nhiên kéo|búa|bao
       let soNgauNhien = Math.floor(Math.random() * 3) + 1;
       if (soNgauNhien === 1) {
-        state.tmpMay = state.mangKeoBuaBao[0];
+        state.tmpMayTinh = state.mangKeoBuaBao[0];
       } else if (soNgauNhien === 2) {
-        state.tmpMay = state.mangKeoBuaBao[1];
+        state.tmpMayTinh = state.mangKeoBuaBao[1];
       } else {
-        state.tmpMay = state.mangKeoBuaBao[2];
+        state.tmpMayTinh = state.mangKeoBuaBao[2];
       }
-      //B2: đấu coi ai thắng
+
+      //B3: đấu
       if (
-        (state.tmpNguoiChoi.ma === 1 && state.tmpMay.ma === 3) ||
-        (state.tmpNguoiChoi.ma === 2 && state.tmpMay.ma === 1) ||
-        (state.tmpNguoiChoi.ma === 3 && state.tmpMay.ma === 2)
+        (state.tmpNguoiChoi.ma === 1 && state.tmpMayTinh.ma === 3) ||
+        (state.tmpNguoiChoi.ma === 2 && state.tmpMayTinh.ma === 1) ||
+        (state.tmpNguoiChoi.ma === 3 && state.tmpMayTinh.ma === 2)
       ) {
         state.soBanThang += 1;
+      } else if (
+        (state.tmpNguoiChoi.ma === 1 && state.tmpMayTinh.ma === 1) ||
+        (state.tmpNguoiChoi.ma === 2 && state.tmpMayTinh.ma === 2) ||
+        (state.tmpNguoiChoi.ma === 3 && state.tmpMayTinh.ma === 3)
+      ) {
+        state.soBanHoa += 1;
+      } else {
+        state.soBanThua += 1;
       }
-      //B3: tăng số bàn chơi
-      state.soBanChoi += 1;
     }
     default:
       return { ...state };
