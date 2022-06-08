@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { actChonKBB } from "./../redux/actions/oan-tu-ti";
 
 class NguoiChoi extends Component {
   render() {
@@ -59,10 +60,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     chonKeoBuaBao: (ma) => {
-      dispatch({
-        type: "CHON_KBB",
-        payload: ma,
-      });
+      dispatch(actChonKBB(ma));
     },
   };
 };

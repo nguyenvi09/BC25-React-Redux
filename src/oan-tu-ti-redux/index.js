@@ -3,6 +3,7 @@ import NguoiChoi from "./NguoiChoi";
 import MayTinh from "./MayTinh";
 import ThongTin from "./ThongTin";
 import { connect } from "react-redux";
+import { actOanTuTi } from "./../redux/actions/oan-tu-ti";
 
 class OanTuTiRedux extends Component {
   render() {
@@ -33,14 +34,11 @@ class OanTuTiRedux extends Component {
   }
 }
 
-// xử lý chọn kéo|búa|bao
+// gửi action lên store
 const mapDispatchToProps = (dispatch) => {
   return {
     playGame: () => {
-      let action = {
-        type: "OAN_TU_TI",
-      };
-      dispatch(action);
+      dispatch(actOanTuTi());
     },
   };
 };

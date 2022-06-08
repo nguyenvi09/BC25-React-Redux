@@ -1,3 +1,5 @@
+import { CHON_KBB, OAN_TU_TI } from "./../../constants/oan-tu-ti";
+
 // xác định dữ liệu tạo state
 const initialState = {
   tmpNguoiChoi: { ma: 1, hinhAnh: "img/keo.png" },
@@ -16,7 +18,7 @@ const initialState = {
 //hàm xử lý hành động
 const oanTuTiReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CHON_KBB": {
+    case CHON_KBB: {
       if (action.payload === 1) {
         state.tmpNguoiChoi = state.mangKeoBuaBao[0];
       } else if (action.payload === 2) {
@@ -26,7 +28,7 @@ const oanTuTiReducer = (state = initialState, action) => {
       }
       return { ...state };
     }
-    case "OAN_TU_TI": {
+    case OAN_TU_TI: {
       //B1: tăng số bàn chơi
       state.soBanChoi += 1;
 
