@@ -3,15 +3,20 @@ import { connect } from "react-redux";
 
 class ThongTin extends Component {
   render() {
-    const { taiXiu, soBanChoi, soBanThang } = this.props;
+    const { taiXiu, soBanChoi, soBanThang, soBanThua } = this.props;
     return (
-      <div style={{ fontSize: "40px" }}>
+      <div style={{ fontSize: "50px" }}>
         <div>
           BẠN CHỌN:{" "}
           <span style={{ color: "red" }}>{taiXiu ? "TÀI" : "XỈU"}</span>
         </div>
-        <div>
-          BÀN THẮNG: <span style={{ color: "green" }}>{soBanThang}</span>
+        <div className="row justify-content-around">
+          <div className="col-6 align-self-start">
+            THẮNG: <span style={{ color: "green" }}>{soBanThang}</span>
+          </div>
+          <div className="col-6">
+            THUA: <span style={{ color: "red" }}>{soBanThua}</span>
+          </div>
         </div>
         <div>
           TỔNG SỐ BÀN CHƠI: <span style={{ color: "yellow" }}>{soBanChoi}</span>
@@ -30,6 +35,7 @@ const mapStateToProps = (state) => {
     //xxReducer nằm trong rootReducer
     taiXiu: state.xxReducer.taiXiu,
     soBanThang: state.xxReducer.soBanThang,
+    soBanThua: state.xxReducer.soBanThua,
     soBanChoi: state.xxReducer.soBanChoi,
   };
 };

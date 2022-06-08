@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import XucXacList from "./XucXacList";
 import ThongTin from "./ThongTin";
 import { connect } from "react-redux";
+import { actDatCuoc, actPlayGame } from "./../redux/actions/xuc-xac";
 class XucXacRedux extends Component {
   render() {
     return (
@@ -35,6 +36,7 @@ class XucXacRedux extends Component {
           </div>
           <ThongTin />
           <button
+            style={{ fontSize: "25px" }}
             onClick={() => {
               this.props.playGame();
             }}
@@ -56,21 +58,11 @@ class XucXacRedux extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     datCuoc: (taiXiu) => {
-      //tạo action
-      let action = {
-        //type: nó tên để ta nhân biết nó là hoạt động gì mà xử lý
-        type: "DAT_CUOC",
-        //payload sẽ lưu giá trị
-        payload: taiXiu,
-      };
       //Gửi action lên Reducer
-      dispatch(action);
+      dispatch(actDatCuoc(taiXiu));
     },
     playGame: () => {
-      let action = {
-        type: "PLAY_GAME",
-      };
-      dispatch(action);
+      dispatch(actPlayGame());
     },
   };
 };

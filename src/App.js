@@ -5,8 +5,8 @@ import XucXacRedux from "./xuc-xac-redux";
 function App() {
   return (
     <>
-      {/* <XucXacRedux /> */}
-      <OanTuTiRedux />
+      <XucXacRedux />
+      {/* <OanTuTiRedux /> */}
     </>
   );
 }

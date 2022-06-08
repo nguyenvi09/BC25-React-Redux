@@ -7,7 +7,7 @@ class XucXacList extends Component {
       return (
         <img
           key={index}
-          style={{ width: 60 }}
+          style={{ width: 80 }}
           src={item.hinhAnh}
           alt="Hình Xúc Xắc"
         />

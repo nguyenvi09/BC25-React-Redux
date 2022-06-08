@@ -1,3 +1,5 @@
+import { DAT_CUOC, PLAY_GAME } from "./../../constants/xuc-xac.js";
+
 const initalState = {
   taiXiu: true,
   mangXucXac: [
@@ -6,16 +8,17 @@ const initalState = {
     { giaTri: 1, hinhAnh: "img/3.png" },
   ],
   soBanThang: 0,
+  soBanThua: 0,
   soBanChoi: 0,
 };
 
 const xxReducer = (state = initalState, action) => {
   switch (action.type) {
-    case "DAT_CUOC": {
+    case DAT_CUOC: {
       state.taiXiu = action.payload;
       return { ...state };
     }
-    case "PLAY_GAME": {
+    case PLAY_GAME: {
       //B1: xử lý tạo giá trị ngẫu nhiên 3 cục xúc xắc
       let mangXucXacNgauNhien = [];
       for (let i = 0; i < 3; i++) {
@@ -38,12 +41,10 @@ const xxReducer = (state = initalState, action) => {
         return (tongDiem += xucXac.ma);
       }, 0);
       // xét điều kiện thắng game
-      if (
-        (tongSoDiem > 11 && !state.taiXiu) ||
-        (tongSoDiem <= 11 && state.taiXiu)
-      ) {
-        state.soBanThang += 1;
-      }
+
+      (tongSoDiem > 11 && !state.taiXiu) || (tongSoDiem <= 11 && state.taiXiu)
+        ? (state.soBanThang += 1)
+        : (state.soBanThua += 1);
       return { ...state };
     }
     default:
