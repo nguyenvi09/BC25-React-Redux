@@ -5,14 +5,7 @@ import { connect } from "react-redux";
 class ProductList extends Component {
   renderListProduct = () => {
     return this.props.productList.map((item) => {
-      return (
-        <Product
-          key={item.maSP}
-          product={item}
-          getDetail={this.props.getDetail}
-          getProductAddCart={this.props.getProductAddCart}
-        />
-      );
+      return <Product key={item.maSP} product={item} />;
     });
   };
 

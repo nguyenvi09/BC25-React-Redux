@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 class Product extends Component {
   render() {
-    const { product, getDetail } = this.props;
+    const { product, getDetail, getProductAddCart } = this.props;
     return (
       <div className="col-sm-4">
         <div className="card">
@@ -26,7 +26,7 @@ class Product extends Component {
             <button
               className="btn btn-danger"
               onClick={() => {
-                this.props.getProductAddCart(product);
+                getProductAddCart(product);
               }}
             >
               Thêm giỏ hàng
@@ -46,6 +46,14 @@ const mapDispatchToProps = (dispatch) => {
         payload: product,
       };
 
+      dispatch(action);
+    },
+
+    getProductAddCart: (product) => {
+      let action = {
+        type: "SAVE_PRODUCT",
+        payload: product,
+      };
       dispatch(action);
     },
   };

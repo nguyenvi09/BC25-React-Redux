@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class Modal extends Component {
+class Modal extends Component {
   renderTbody = () => {
-    const { listCart } = this.props;
+    const { listCart, getProductQuantity, getProductDeleteCart } = this.props;
     return listCart.map((product) => {
       return (
         <tr key={product.maSP}>
@@ -14,7 +15,7 @@ export default class Modal extends Component {
           <td>
             <button
               onClick={() => {
-                this.props.getProductQuantity(false, product);
+                getProductQuantity(false, product);
               }}
             >
               -
@@ -22,7 +23,7 @@ export default class Modal extends Component {
             {product.soLuong}
             <button
               onClick={() => {
-                this.props.getProductQuantity(true, product);
+                getProductQuantity(true, product);
               }}
             >
               +
@@ -34,7 +35,7 @@ export default class Modal extends Component {
             <button
               className="btn btn-danger"
               onClick={() => {
-                this.props.getProductDeleteCart(product);
+                getProductDeleteCart(product);
               }}
             >
               Delete
@@ -105,3 +106,28 @@ export default class Modal extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    listCart: state.shoppingCartReducer.listCart,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getProductQuantity: (status, product) => {
+      dispatch({
+        type: "UP_DOWN",
+        payload: product,
+        status: status,
+      });
+    },
+    getProductDeleteCart: (product) => {
+      dispatch({
+        type: "DELETE_PRODUCT",
+        payload: product,
+      });
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);
