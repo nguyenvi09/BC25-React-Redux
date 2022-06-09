@@ -1,12 +1,14 @@
 import "./App.css";
-// import ShoppingCartRedux from "./shopping-cart-redux";
 import OanTuTiRedux from "./oan-tu-ti-redux";
 import XucXacRedux from "./xuc-xac-redux";
+import ShoppingCartRedux from "./shopping-cart";
+
 function App() {
   return (
     <>
       {/* <XucXacRedux /> */}
-      <OanTuTiRedux />
+      {/* <OanTuTiRedux /> */}
+      <ShoppingCartRedux />
     </>
   );
 }
