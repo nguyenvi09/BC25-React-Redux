@@ -1,5 +1,6 @@
 import data from "./data.json";
 
+//thiết kế state, nhận diện dữ liệu thay đổi giao diện phù hợp
 const initialState = {
   productList: data,
   detailProduct: data[0],
@@ -7,6 +8,7 @@ const initialState = {
   cartProduct: 0,
 };
 
+//cấu trúc Child Reducer ta tạo cái hàm
 const shoppingCartReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_DETAIL": {
