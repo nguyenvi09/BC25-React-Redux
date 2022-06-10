@@ -4,45 +4,42 @@ import { actChonKBB } from "./../redux/actions/oan-tu-ti";
 
 class NguoiChoi extends Component {
   render() {
+    const { xucXacNguoiChoi, mangKeoBuaBao, chonKeoBuaBao } = this.props;
     return (
       <>
         <div className="speech-bubble">
           <img
             className="speech-bubble__img"
-            src={this.props.xucXacNguoiChoi.hinhAnh}
+            src={xucXacNguoiChoi.hinhAnh}
+            alt="Hình ảnh chọn Kéo/Búa/Bao"
           />
         </div>
 
-        <img style={{ width: "70%" }} src="./img/player.png" />
+        <img
+          style={{ width: "70%" }}
+          src="./img/player.png"
+          alt="./img/player.png"
+        />
 
         <div className="d-flex justify-content-between">
-          <button
-            onClick={() => {
-              this.props.chonKeoBuaBao(1);
-            }}
-            style={{ width: "30%" }}
-            className="btn btn-light p-0"
-          >
-            <img style={{ width: "50%" }} src="./img/keo.png" />
-          </button>
-          <button
-            onClick={() => {
-              this.props.chonKeoBuaBao(2);
-            }}
-            style={{ width: "30%" }}
-            className="btn btn-light p-0"
-          >
-            <img style={{ width: "50%" }} src="./img/bua.png" />
-          </button>
-          <button
-            onClick={() => {
-              this.props.chonKeoBuaBao(3);
-            }}
-            style={{ width: "30%" }}
-            className="btn btn-light p-0"
-          >
-            <img style={{ width: "50%" }} src="./img/bao.png" />
-          </button>
+          {mangKeoBuaBao.map((item, index) => {
+            return (
+              <button
+                key={index}
+                onClick={() => {
+                  chonKeoBuaBao(index + 1);
+                }}
+                style={{ width: "30%" }}
+                className="btn btn-light btn-outline-warning p-0"
+              >
+                <img
+                  style={{ width: "50%" }}
+                  src={item.hinhAnh}
+                  alt={item.hinhAnh}
+                />
+              </button>
+            );
+          })}
         </div>
       </>
     );
@@ -52,6 +49,7 @@ class NguoiChoi extends Component {
 //lấy hình ảnh mặc định hiển bị trong bong bóng hội thoại
 const mapStateToProps = (state) => {
   return {
+    mangKeoBuaBao: state.oanTuTiReducer.mangKeoBuaBao,
     xucXacNguoiChoi: state.oanTuTiReducer.tmpNguoiChoi,
   };
 };

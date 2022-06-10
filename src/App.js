@@ -7,8 +7,8 @@ function App() {
   return (
     <>
       {/* <XucXacRedux /> */}
-      {/* <OanTuTiRedux /> */}
-      <ShoppingCartRedux />
+      <OanTuTiRedux />
+      {/* <ShoppingCartRedux /> */}
     </>
   );
 }

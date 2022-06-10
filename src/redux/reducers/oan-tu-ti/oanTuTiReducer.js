@@ -1,4 +1,4 @@
-import { CHON_KBB, OAN_TU_TI } from "./../../constants/oan-tu-ti";
+import { CHON_KBB, OAN_TU_TI, RAN_DOM } from "./../../constants/oan-tu-ti";
 
 // xác định dữ liệu tạo state
 const initialState = {
@@ -28,11 +28,9 @@ const oanTuTiReducer = (state = initialState, action) => {
       }
       return { ...state };
     }
-    case OAN_TU_TI: {
-      //B1: tăng số bàn chơi
-      state.soBanChoi += 1;
 
-      //b2: máy sẽ chọn ngẫu nhiên kéo|búa|bao
+    case RAN_DOM: {
+      // máy sẽ chọn ngẫu nhiên kéo|búa|bao
       let soNgauNhien = Math.floor(Math.random() * 3) + 1;
       if (soNgauNhien === 1) {
         state.tmpMayTinh = state.mangKeoBuaBao[0];
@@ -41,6 +39,21 @@ const oanTuTiReducer = (state = initialState, action) => {
       } else {
         state.tmpMayTinh = state.mangKeoBuaBao[2];
       }
+      return { ...state };
+    }
+    case OAN_TU_TI: {
+      //B1: tăng số bàn chơi
+      state.soBanChoi += 1;
+
+      // b2: máy sẽ chọn ngẫu nhiên kéo|búa|bao
+      // let soNgauNhien = Math.floor(Math.random() * 3) + 1;
+      // if (soNgauNhien === 1) {
+      //   state.tmpMayTinh = state.mangKeoBuaBao[0];
+      // } else if (soNgauNhien === 2) {
+      //   state.tmpMayTinh = state.mangKeoBuaBao[1];
+      // } else {
+      //   state.tmpMayTinh = state.mangKeoBuaBao[2];
+      // }
 
       //B3: đấu
       if (

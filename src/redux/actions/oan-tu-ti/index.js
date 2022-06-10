@@ -8,10 +8,16 @@ const actChonKBB = (ma) => {
   };
 };
 
+const actRandom = () => {
+  return {
+    type: ActionType.RAN_DOM,
+  };
+};
+
 const actOanTuTi = () => {
   return {
     type: ActionType.OAN_TU_TI,
   };
 };
 
-export { actChonKBB, actOanTuTi };
+export { actRandom, actChonKBB, actOanTuTi };
