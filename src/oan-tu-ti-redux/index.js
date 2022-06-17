@@ -42,14 +42,13 @@ const mapDispatchToProps = (dispatch) => {
       let randomComputerItem = setInterval(() => {
         dispatch(actRandom());
         count++;
-        if (count >= 10) {
+        if (count >= 15) {
           //gọi hàm để dừng setInterval() lại
           clearInterval(randomComputerItem);
 
           dispatch(actOanTuTi());
         }
-      }, 100);
-      // dispatch(actOanTuTi());
+      }, 70);
     },
   };
 };
