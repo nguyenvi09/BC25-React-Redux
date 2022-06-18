@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { actDangKy } from "../redux/actions/quan-ly-nguoi-dung";
+import { actDangKy, actCapNhat } from "../redux/actions/quan-ly-nguoi-dung";
 
 //cách validation
 /**
- * 1. đưa tất cả các thuộc tính tương ứng với các trường cũa form vào object value
+ * 1. đưa tất cả các thuộc tính tương ứng với các trường của form vào object value
  * 2.tạo error có những thuộc tính tương tự để bắt lỗi
  * 3. xử lý trong hàm handleChangeInput
  * 4. setState()
@@ -94,7 +94,31 @@ class FormDangKy extends Component {
     this.props.dispatch(actDangKy(this.state.value));
   };
 
+  // static getDerivedStateFromProps(newProps, currentState) {
+  //   //can thiệp vào quá trình trước khi render và sau khi props mới từ redux trả về
+  //   //lấy props mới thay đổi của redux gán vào state tại vị trí này
+
+  //   if (newProps.nguoiDungSua.taiKhoan !== currentState.value.taiKhoan) {
+  //     let newState = { ...currentState, value: newProps.nguoiDungSua };
+  //     return newState;
+  //   }
+  //   return null;
+  // }
+
+  //Sử dụng lifecycle phiên bản cũ
+  //Hàm này tương tự getDerivedStateFromProps: tuy nhiên state thay đổi thì không chạy. Chỉ chạy khi props thay đổi
+  componentWillReceiveProps(newProps) {
+    //Lifecycle này kích hoạt khi props của component thay đổi và trước khi render
+    //Đem props gán vào state => giao diện binding từ state
+    this.setState({
+      value: newProps.nguoiDungSua,
+    });
+  }
+
   render() {
+    //lấy ra các trường thông tin gán lên formDangKy để xử lý tính năng chỉnh sửa
+    let { taiKhoan, matKhau, email, soDienThoai, hoTen, loaiNguoiDung } =
+      this.state.value;
     return (
       //bắt sự kiện tại form thì enter & click submit cũng được
       <form className="card" onSubmit={this.handleSubmit}>
@@ -107,6 +131,7 @@ class FormDangKy extends Component {
               <div className="form-group">
                 <p>Tài khoản</p>
                 <input
+                  value={taiKhoan}
                   id="taiKhoan"
                   name="taiKhoan"
                   className="form-control"
@@ -117,6 +142,7 @@ class FormDangKy extends Component {
               <div className="form-group">
                 <p>Họ tên</p>
                 <input
+                  value={hoTen}
                   id="hoTen"
                   name="hoTen"
                   className="form-control"
@@ -127,6 +153,7 @@ class FormDangKy extends Component {
               <div className="form-group">
                 <p>Email</p>
                 <input
+                  value={email}
                   data-type={"emailType"}
                   id="email"
                   name="email"
@@ -140,6 +167,7 @@ class FormDangKy extends Component {
               <div className="form-group">
                 <p>Mật khẩu</p>
                 <input
+                  value={matKhau}
                   data-minlength="6"
                   data-maxlength="32"
                   id="matKhau"
@@ -153,6 +181,7 @@ class FormDangKy extends Component {
               <div className="form-group">
                 <p>Số điện thoại</p>
                 <input
+                  value={soDienThoai}
                   id="soDienThoai"
                   name="soDienThoai"
                   className="form-control"
@@ -163,6 +192,7 @@ class FormDangKy extends Component {
               <div className="form-group">
                 <p>Loại người dùng</p>
                 <select
+                  value={loaiNguoiDung}
                   className="form-control"
                   id="loaiNguoiDung"
                   name="loaiNguoiDung"
@@ -180,7 +210,13 @@ class FormDangKy extends Component {
           <button type="submit" className="btn btn-success">
             Đăng ký
           </button>
-          <button className="btn btn-success ml-2" type="button">
+          <button
+            className="btn btn-success ml-2"
+            type="button"
+            onClick={() => {
+              this.props.dispatch(actCapNhat(this.state.value));
+            }}
+          >
             Cập nhật
           </button>
         </div>
@@ -189,4 +225,10 @@ class FormDangKy extends Component {
   }
 }
 
-export default connect()(FormDangKy);
+const mapStateToProps = (rootReducer) => {
+  return {
+    nguoiDungSua: rootReducer.formReducer.nguoiDungSua,
+  };
+};
+
+export default connect(mapStateToProps)(FormDangKy);

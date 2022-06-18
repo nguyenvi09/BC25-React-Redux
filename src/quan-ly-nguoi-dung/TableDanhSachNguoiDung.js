@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { actXoa } from "../redux/actions/quan-ly-nguoi-dung";
+import { actXoa, actSua } from "../redux/actions/quan-ly-nguoi-dung";
 
 class TableDanhSachNguoiDung extends Component {
   //hàm render giao diện
@@ -15,7 +15,20 @@ class TableDanhSachNguoiDung extends Component {
           <td>{nd.soDienThoai}</td>
           <td>{nd.loaiNguoiDung}</td>
           <td>
-            <button className="btn btn-primary">Chỉnh sửa</button>
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                //Đưa dữ liệu lên redux thay đổi cho state.nguoiDungSua của formReducer
+                // const action = {
+                //   type: "SUA_NGUOI_DUNG",
+                //   payload: nd,
+                // };
+
+                this.props.dispatch(actSua(nd));
+              }}
+            >
+              Chỉnh sửa
+            </button>
             <button
               className="btn btn-danger ml-2"
               onClick={() => this.props.dispatch(actXoa(nd))}
